@@ -16,13 +16,16 @@
 - action 함수의 return 함수(dispatch를 인자로 받는) 내부에서 비동기 처리를 하고 완료되면 dispatch에 success함수에 완료된 데이터와 함께실행 
 - reducer로 넘어가서 처리한 데이터를 바탕으로 set state(not setState function)
 
+- 모든 함수에서 try catch 로 error catch시 failure 함수 실행
 # redux-saga
 
 - 일반적인 동기 action => 그냥 마찬가지로 진행
 - 비동기 액션은 starter/success/failure 로 함수 구분해서 셋팅
-- 비동기 액션에 대한 saga에는 watch(starter함수 실행 감지)/do(실제 비동기 요청)/end(받아온 데이터로 action의 success함수 실행) 함수로 구분해서 셋팅
+- 비동기 액션에 대한 saga에는 watch(starter함수 실행 감지)/do(실제 비동기 요청)/origin(do 함수 실행하고,그 데이터로 success함수 실행) 함수로 구분해서 셋팅
 - 최초 액션 실행시 start함수 실행
 - saga에 설정한 watch함수가 start함수 실행 감지
-- 위에 셋팅 해놓은 do/ end 함수 차례로 실행
+- 위에 셋팅 해놓은 origin(내부에 do함수) 함수 실행
 - success 함수 reducer로 반환
 - reducer로 넘어가서 처리한 데이터를 바탕으로 set state(not setState function)
+
+- 모든 함수에서 try catch 로 error catch시 failure 함수 실행
